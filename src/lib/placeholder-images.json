@@ -1,0 +1,196 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-suite",
+      "description": "Luxurious hotel suite for the hero section.",
+      "imageUrl": "https://images.unsplash.com/photo-1758597256447-a3b6b98b18c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxsdXh1cmlvdXMlMjBob3RlbCUyMHN1aXRlfGVufDB8fHx8MTc2NzQ0NDk5Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "luxurious hotel suite"
+    },
+    {
+      "id": "deluxe-king-1",
+      "description": "Primary image for the Deluxe King Room.",
+      "imageUrl": "https://images.unsplash.com/photo-1731336250970-dc942b5e0746?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxraW5nJTIwc2l6ZSUyMGJlZHxlbnwwfHx8fDE3Njc0NDQ5OTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "king size bed"
+    },
+    {
+      "id": "deluxe-king-2",
+      "description": "Secondary image for the Deluxe King Room.",
+      "imageUrl": "https://images.unsplash.com/photo-1646974400441-7dac43667c01?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob3RlbCUyMHJvb20lMjBiYXRocm9vbXxlbnwwfHx8fDE3Njc0NDQ5OTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hotel room bathroom"
+    },
+    {
+      "id": "executive-suite-1",
+      "description": "Primary image for the Executive Suite.",
+      "imageUrl": "https://images.unsplash.com/photo-1601003243101-806fe77dd4b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzcGFjaW91cyUyMGhvdGVsJTIwc3VpdGV8ZW58MHx8fHwxNzY3NDQ0OTk2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "spacious hotel suite"
+    },
+    {
+      "id": "executive-suite-2",
+      "description": "Secondary image for the Executive Suite.",
+      "imageUrl": "https://images.unsplash.com/photo-1581209410127-8211e90da024?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzdWl0ZSUyMGxpdmluZyUyMGFyZWF8ZW58MHx8fHwxNzY3NDQ0OTk2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "suite living area"
+    },
+    {
+      "id": "garden-view-queen-1",
+      "description": "Primary image for the Garden View Queen room.",
+      "imageUrl": "https://images.unsplash.com/photo-1686591712206-6b60ba7a2a83?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxyb29tJTIwd2l0aCUyMGdhcmRlbiUyMHZpZXd8ZW58MHx8fHwxNzY3NDQ0OTk2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "room with garden view"
+    },
+    {
+      "id": "garden-view-queen-2",
+      "description": "Secondary image for the Garden View Queen room.",
+      "imageUrl": "https://images.unsplash.com/photo-1759405198466-d7f97ef8b4a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxiYWxjb255JTIwb3Zlcmxvb2tpbmclMjBnYXJkZW58ZW58MHx8fHwxNzY3NDQ0OTk3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "balcony overlooking garden"
+    },
+    {
+      "id": "presidential-suite-1",
+      "description": "Primary image for the Presidential Suite.",
+      "imageUrl": "https://images.unsplash.com/photo-1677894106262-17555e852e14?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxsdXh1cnklMjBwcmVzaWRlbnRpYWwlMjBzdWl0ZXxlbnwwfHx8fDE3Njc0NDQ5OTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "luxury presidential suite"
+    },
+    {
+      "id": "presidential-suite-2",
+      "description": "Secondary image for the Presidential Suite.",
+      "imageUrl": "https://images.unsplash.com/photo-1758298030660-ca627fb319ae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzdWl0ZSUyMGRpbmluZyUyMHRhYmxlfGVufDB8fHx8MTc2NzQ0NDk5Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "suite dining table"
+    },
+    {
+      "id": "avatar-jane-doe",
+      "description": "Avatar for Jane Doe.",
+      "imageUrl": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx3b21hbiUyMHBvcnRyYWl0fGVufDB8fHx8MTc2NzMzOTY4MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "avatar-john-smith",
+      "description": "Avatar for John Smith.",
+      "imageUrl": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtYW4lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjczMzMwMDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "avatar-emily-jones",
+      "description": "Avatar for Emily Jones.",
+      "imageUrl": "https://images.unsplash.com/photo-1711645169736-53327e726205?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx3b21hbiUyMHNtaWxpbmd8ZW58MHx8fHwxNzY3NDM2MDI5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman smiling"
+    },
+    {
+      "id": "amenities-pool",
+      "description": "Image for amenities card.",
+      "imageUrl": "https://images.unsplash.com/photo-1534612899740-55c821a90129?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob3RlbCUyMHN3aW1taW5nJTIwcG9vbHxlbnwwfHx8fDE3Njc0NDQ5OTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hotel swimming pool"
+    },
+    {
+      "id": "gallery-lobby",
+      "description": "Image for gallery card.",
+      "imageUrl": "https://images.unsplash.com/photo-1766272944392-644c1f429dfe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxlbGVnYW50JTIwaG90ZWwlMjBsb2JieXxlbnwwfHx8fDE3Njc0NDQ5OTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "elegant hotel lobby"
+    },
+    {
+      "id": "gallery-1",
+      "description": "Gallery image 1.",
+      "imageUrl": "https://images.unsplash.com/photo-1668480441891-3744c25337a3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxob3RlbCUyMGV4dGVyaW9yfGVufDB8fHx8MTc2NzQ0NDk5Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hotel exterior"
+    },
+    {
+      "id": "gallery-2",
+      "description": "Gallery image 2.",
+      "imageUrl": "https://images.unsplash.com/photo-1643101570532-88c8ecc07c1f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxmaW5lJTIwZGluaW5nJTIwcmVzdGF1cmFudHxlbnwwfHx8fDE3Njc0NDQ5OTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fine dining restaurant"
+    },
+    {
+      "id": "gallery-3",
+      "description": "Gallery image 3.",
+      "imageUrl": "https://images.unsplash.com/photo-1603077864615-538e955d1ad1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxob3RlbCUyMHNwYXxlbnwwfHx8fDE3NjczOTc4NTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hotel spa"
+    },
+    {
+      "id": "gallery-4",
+      "description": "Gallery image 4.",
+      "imageUrl": "https://images.unsplash.com/photo-1569924995012-c4c706bfcd51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb2NrdGFpbCUyMGJhcnxlbnwwfHx8fDE3NjczODE2MzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cocktail bar"
+    },
+    {
+      "id": "gallery-5",
+      "description": "Gallery image 5.",
+      "imageUrl": "https://images.unsplash.com/photo-1613067532743-33c628bc7e1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8d2VkZGluZyUyMHZlbnVlfGVufDB8fHx8MTc2NzQzNzEzOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wedding venue"
+    },
+    {
+      "id": "gallery-6",
+      "description": "Gallery image 6.",
+      "imageUrl": "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxmaXRuZXNzJTIwY2VudGVyfGVufDB8fHx8MTc2NzQ0NDk5Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fitness center"
+    },
+    {
+      "id": "gallery-7",
+      "description": "Gallery image 7.",
+      "imageUrl": "https://images.unsplash.com/photo-1579488081757-b212dbd6ee72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjb25mZXJlbmNlJTIwcm9vbXxlbnwwfHx8fDE3NjczNTczNjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "conference room"
+    },
+    {
+      "id": "gallery-8",
+      "description": "Gallery image 8.",
+      "imageUrl": "https://images.unsplash.com/photo-1664190052514-6b4271caf147?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxyb29mdG9wJTIwdGVycmFjZXxlbnwwfHx8fDE3NjczNDcxMTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "rooftop terrace"
+    },
+    {
+      "id": "rooms-hero",
+      "description": "Hero image for the rooms page.",
+      "imageUrl": "https://images.unsplash.com/photo-1628745279495-2c813f381832?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxlbGVnYW50JTIwaG90ZWwlMjByb29tc3xlbnwwfHx8fDE3Njc0NDQ5OTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "elegant hotel rooms"
+    },
+    {
+      "id": "amenity-wifi",
+      "description": "High-speed WiFi amenity image",
+      "imageUrl": "https://images.unsplash.com/photo-1586895518497-40005707153b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx3aWZpJTIwc2lnbmFsfGVufDB8fHx8MTc2NzQ1OTk0OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wifi signal"
+    },
+    {
+      "id": "amenity-restaurant",
+      "description": "On-site restaurant amenity image",
+      "imageUrl": "https://images.unsplash.com/photo-1643101570532-88c8ecc07c1f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxmaW5lJTIwZGluaW5nJTIwcmVzdGF1cmFudHxlbnwwfHx8fDE3Njc0NDQ5OTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fine dining restaurant"
+    },
+    {
+      "id": "amenity-pool",
+      "description": "Swimming pool amenity image",
+      "imageUrl": "https://images.unsplash.com/photo-1534612899740-55c821a90129?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob3RlbCUyMHN3aW1taW5nJTIwcG9vbHxlbnwwfHx8fDE3Njc0NDQ5OTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hotel swimming pool"
+    },
+    {
+      "id": "amenity-gym",
+      "description": "Fitness center amenity image",
+      "imageUrl": "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxmaXRuZXNzJTIwY2VudGVyfGVufDB8fHx8MTc2NzQ0NDk5Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fitness center"
+    },
+    {
+      "id": "amenity-spa",
+      "description": "Spa & wellness amenity image",
+      "imageUrl": "https://images.unsplash.com/photo-1603077864615-538e955d1ad1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxob3RlbCUyMHNwYXxlbnwwfHx8fDE3NjczOTc4NTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hotel spa"
+    },
+    {
+      "id": "amenity-parking",
+      "description": "Free parking amenity image",
+      "imageUrl": "https://images.unsplash.com/photo-1590674899484-5c52051101a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwYXJraW5nJTIwbG90fGVufDB8fHx8MTc2NzQ1OTk0OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "parking lot"
+    },
+    {
+      "id": "amenity-concierge",
+      "description": "24/7 concierge amenity image",
+      "imageUrl": "https://images.unsplash.com/photo-1766272944392-644c1f429dfe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxlbGVnYW50JTIwaG90ZWwlMjBsb2JieXxlbnwwfHx8fDE3Njc0NDQ5OTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "elegant hotel lobby"
+    },
+    {
+      "id": "amenity-coffee",
+      "description": "In-room coffee amenity image",
+      "imageUrl": "https://images.unsplash.com/photo-1511920183353-309c2775c163?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb2ZmZWUlMjBtYWtlcnxlbnwwfHx8fDE3Njc0NTk5NDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "coffee maker"
+    },
+    {
+      "id": "location-hero",
+      "description": "Hero image for the location page.",
+      "imageUrl": "https://images.unsplash.com/photo-1553531384-411a247ccd78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyb2FkJTIwbWFwJTIwcG9pbnRzfGVufDB8fHx8MTc2NzQ2NzMyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "road map points"
+    }
+  ]
+}
