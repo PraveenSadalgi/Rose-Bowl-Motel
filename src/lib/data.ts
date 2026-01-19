@@ -23,7 +23,7 @@ export const rooms: Room[] = [
     description: 'A spacious room with a comfortable king-sized bed.',
     longDescription:
       'Indulge in the comfort of our Deluxe King Room. Featuring a plush king-sized bed, a modern en-suite bathroom with a rainfall shower, and a cozy seating area. Enjoy stunning views of the city skyline or our tranquil gardens. Perfect for couples or solo travelers seeking a touch of luxury.',
-    price: 100,
+    price: 1000,
     images: ['deluxe-king-1', 'deluxe-king-2'],
     amenities: ['wifi', 'tv', 'air-conditioning', 'mini-bar', 'marble-bathroom', 'coffee-maker'],
     capacity: 2,

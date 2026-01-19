@@ -142,6 +142,14 @@ export default function BookingForm() {
   const createBooking = async (data: BookingFormValues) => {
     setIsSubmitting(true);
     try {
+      // Get the current user
+      const { data: { user }, error: userError } = await supabase.auth.getUser();
+      
+      if (userError) throw userError;
+      if (!user) {
+        throw new Error('You must be logged in to make a booking');
+      }
+
       const roomFromSlug = rooms.find((r) => r.slug === data.roomType);
       if (!roomFromSlug) {
         throw new Error('Please select a valid room before continuing');
@@ -176,11 +184,12 @@ export default function BookingForm() {
         throw new Error('Selected room is no longer available for the chosen dates');
       }
 
-      // Create booking
+      // Create booking with user_id
       const { data: booking, error: bookingError } = await supabase
         .from('bookings')
         .insert({
           room_id: roomId,
+          user_id: user.id,  // Add the logged-in user's ID
           first_name: data.firstName,
           last_name: data.lastName,
           email: data.email,
