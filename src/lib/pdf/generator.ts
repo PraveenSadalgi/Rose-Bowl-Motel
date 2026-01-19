@@ -67,7 +67,7 @@ export async function generateBookingPdf(booking: Booking): Promise<Uint8Array> 
   doc.text('PAYMENT SUMMARY', margin, margin + 170);
   
   doc.setFont('helvetica', 'normal');
-  doc.text(`Total Amount: $${booking.total_price.toFixed(2)}`, margin, margin + 180);
+  doc.text(`Total Amount: ₹${booking.total_price.toLocaleString('en-IN')}`, margin, margin + 180);
   doc.text(`Payment Method: Credit Card`, margin, margin + 190);
   doc.text(`Payment ID: ${booking.payment_intent_id}`, margin, margin + 200);
   

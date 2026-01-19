@@ -197,7 +197,7 @@ export default function BookingForm() {
           check_in_date: format(data.checkInDate, 'yyyy-MM-dd'),
           check_out_date: format(data.checkOutDate, 'yyyy-MM-dd'),
           num_guests: data.numGuests,
-          total_amount: totalAmount / 100, // Convert back to dollars
+          total_amount: totalAmount, // Store amount in rupees
           special_requests: data.specialRequests,
           status: 'pending',
           currency: 'USD' // Add required currency field

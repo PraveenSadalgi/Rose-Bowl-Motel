@@ -261,7 +261,7 @@ export default function ProfilePage() {
                   </div>
                   <div>
                     <p className="text-muted-foreground">Total</p>
-                    <p>${booking.total_amount.toFixed(2)}</p>
+                    <p>₹{booking.total_amount.toLocaleString('en-IN')}</p>
                   </div>
                 </div>
                 <div className="mt-4 flex space-x-2">
