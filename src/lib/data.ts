@@ -17,7 +17,7 @@ import { getPlaceholderImage } from './placeholder-images';
 
 export const rooms: Room[] = [
   {
-    id: 1,
+    id: 8,
     name: 'Deluxe King Room',
     slug: 'deluxe-king-room',
     description: 'A spacious room with a comfortable king-sized bed.',
@@ -30,33 +30,33 @@ export const rooms: Room[] = [
     sqft: 450,
   },
   {
-    id: 2,
+    id: 9,
     name: 'Executive Suite',
     slug: 'executive-suite',
     description: 'A luxurious suite with a separate living area.',
     longDescription:
       'Experience unparalleled luxury in our Executive Suite. This expansive suite offers a private bedroom with a king-sized bed, a separate, elegantly furnished living room, and a spa-like bathroom with a soaking tub. Ideal for business travelers or those desiring extra space and comfort.',
-    price: 2000,
+    price: 7999,
     images: ['executive-suite-1', 'executive-suite-2'],
     amenities: ['wifi', 'tv', 'air-conditioning', 'mini-bar', 'room-service', 'private-balcony'],
     capacity: 3,
     sqft: 750,
   },
   {
-    id: 3,
+    id: 10,
     name: 'Garden View Queen',
     slug: 'garden-view-queen',
     description: 'A charming room with beautiful garden views.',
     longDescription:
       'Wake up to serene views of our lush, manicured gardens in the Garden View Queen room. This charming room features a comfortable queen-sized bed, a private balcony, and all the modern amenities you need for a relaxing stay. A peaceful retreat from the everyday hustle.',
-    price: 3000,
+    price: 3999,
     images: ['garden-view-queen-1', 'garden-view-queen-2'],
     amenities: ['wifi', 'tv', 'air-conditioning', 'balcony', 'coffee-maker', 'smart-tv'],
     capacity: 2,
     sqft: 400,
   },
   {
-    id: 4,
+    id: 11,
     name: 'Presidential Suite',
     slug: 'presidential-suite',
     description: 'The pinnacle of luxury with panoramic views.',
