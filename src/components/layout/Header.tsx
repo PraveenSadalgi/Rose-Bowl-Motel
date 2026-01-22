@@ -58,13 +58,17 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center">
-        <Link href="/" className="flex items-center space-x-2">
-          <span className="font-headline text-xl font-bold">Rose Bowl Motel</span>
-          <p className="text-sm text-muted-foreground">the classic elegance</p>
+      <div className="container mx-auto px-4 flex h-16 items-center justify-between">
+        <Link 
+          href="/" 
+          className="flex items-center space-x-2 active:opacity-80 transition-opacity"
+          aria-label="Rose Bowl Motel Home"
+        >
+          <span className="font-headline text-xl font-bold whitespace-nowrap">Rose Bowl Motel</span>
+          <p className="hidden sm:inline text-sm text-muted-foreground whitespace-nowrap">the classic elegance</p>
         </Link>
 
-        <div className="hidden md:flex items-center gap-8 ml-auto">
+        <div className="hidden md:flex items-center gap-8">
           <nav className="flex items-center gap-6 text-sm font-medium">
             {navLinks.map((link) => (
               <Link
@@ -126,20 +130,25 @@ export function Header() {
             </Button>
           </div>
 
-        <div className="md:hidden ml-auto">
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild>
-              <Button variant="outline" size="icon">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle navigation menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="flex flex-col p-0 w-[300px] sm:w-[350px]">
-              <div className="flex flex-col h-full">
-                <div className="flex items-center justify-between p-4 border-b">
-                  <div>
-                    <span className="font-bold font-headline text-xl">Rose Bowl Motel</span>
-                    <p className="text-sm text-muted-foreground">the classic elegance</p>
+          <div className="md:hidden -mr-2">
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <Button 
+                  variant="outline" 
+                  size="icon" 
+                  className="h-12 w-12 rounded-full flex items-center justify-center active:scale-95 transition-transform"
+                  aria-label="Toggle navigation menu"
+                >
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Toggle navigation menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="flex flex-col p-0 w-[300px] sm:w-[350px]">
+                <div className="flex flex-col h-full">
+                  <div className="flex items-center justify-between p-4 border-b">
+                    <div>
+                      <span className="font-bold font-headline text-xl">Rose Bowl Motel</span>
+                      <p className="text-sm text-muted-foreground">the classic elegance</p>
                   </div>
                   <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 </div>

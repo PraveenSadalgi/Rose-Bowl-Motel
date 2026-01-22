@@ -2,21 +2,126 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Prevent horizontal scrolling */
+/* Base responsive settings */
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
+}
+
+/* Prevent horizontal scrolling and set base font size */
 html, body {
   max-width: 100%;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Ensure all elements respect their container's width */
-* {
+*, *::before, *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* Make sure images and other media don't cause overflow */
-img, video, iframe {
+/* Make sure images and other media are responsive */
+img, video, iframe, svg, picture, canvas {
   max-width: 100%;
   height: auto;
+  display: block;
+}
+
+/* Improve media defaults */
+img, video {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+  font-style: italic;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Responsive iframe */
+iframe {
+  width: 100%;
+  border: 0;
+}
+
+/* Improve form elements for touch */
+button, 
+input, 
+select, 
+textarea, 
+a {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+button, 
+[type='button'], 
+[type='reset'], 
+[type='submit'] {
+  -webkit-appearance: button;
+  touch-action: manipulation;
+}
+
+/* Remove default button styling on iOS */
+button, 
+[type='button'], 
+[type='reset'], 
+[type='submit'],
+[role='button'] {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Improve typography on all devices */
+body {
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Better touch feedback */
+@media (hover: hover) and (pointer: fine) {
+  /* Desktop hover states */
+  a, button, [role='button'] {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  
+  a:hover, 
+  button:not(:disabled):hover, 
+  [role='button']:not(:disabled):hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+  /* Increase tap target size for touch devices */
+  a, button, [role='button'] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve touch feedback */
+  button:active, 
+  [role='button']:active {
+    opacity: 0.8;
+    transform: scale(0.98);
+  }
+}
+
+/* Prevent text size adjustment on orientation change */
+@media screen and (max-width: 768px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
 }
 
 @layer base {
