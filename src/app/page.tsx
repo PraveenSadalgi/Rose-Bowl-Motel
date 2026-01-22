@@ -20,20 +20,23 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { testimonials, featuredRooms } from '@/lib/data';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
+import { VideoPlayer } from '@/components/ui/VideoPlayer';
 
 export default function Home() {
   return (
     <div className="flex flex-col">
-      <section className="relative h-screen w-full">
-        <Image
-          src={getPlaceholderImage('hero-suite').imageUrl}
-          alt="Luxurious hotel suite with a beautiful view"
-          data-ai-hint="luxurious hotel suite"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/50" />
+      <section className="relative h-screen w-full overflow-hidden">
+        <div className="absolute inset-0 w-full h-full">
+          <VideoPlayer 
+            src="/videos/1188-143842652_medium.mp4" 
+            className="absolute inset-0 w-full h-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
         <div className="relative h-full flex flex-col items-center justify-center text-center text-white p-4">
           <h1 className="text-4xl md:text-6xl font-headline font-bold text-balance animate-rise-up" style={{ animationDelay: '0.2s' }}>
             Welcome to <i>Rose Bowl Motel</i>

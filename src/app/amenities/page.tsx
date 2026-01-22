@@ -4,6 +4,7 @@ import { amenities } from '@/lib/data';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import PageHeader from '@/components/PageHeader';
+import { VideoPlayer } from '@/components/ui/VideoPlayer';
 
 export const metadata: Metadata = {
   title: 'Amenities',
@@ -13,10 +14,28 @@ export const metadata: Metadata = {
 export default function AmenitiesPage() {
   return (
     <div>
-      <PageHeader
-        title="World-Class Amenities"
-        subtitle="From relaxation to recreation, we provide an array of amenities to enrich your stay and ensure utmost comfort."
-      />
+      <section className="relative h-[60vh] w-full overflow-hidden">
+        <div className="absolute inset-0 w-full h-full">
+          <VideoPlayer 
+            src="/videos/0_Bathroom_Bathtub_3840x2160.mp4"
+            className="absolute inset-0 w-full h-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
+        <div className="relative h-full flex items-center justify-center">
+          <div className="text-center text-white px-4">
+            <PageHeader
+              title="World-Class Amenities"
+              subtitle="From relaxation to recreation, we provide an array of amenities to enrich your stay and ensure utmost comfort."
+              className="text-white"
+            />
+          </div>
+        </div>
+      </section>
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {amenities.map((amenity, index) => (

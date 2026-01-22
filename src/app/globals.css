@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Prevent horizontal scrolling */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Ensure all elements respect their container's width */
+* {
+  box-sizing: border-box;
+}
+
+/* Make sure images and other media don't cause overflow */
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
 @layer base {
   :root {
     --background: 48 33% 94%;

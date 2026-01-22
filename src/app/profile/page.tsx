@@ -108,6 +108,43 @@ export default function ProfilePage() {
     fetchBookings();
   }, [user, toast]);
 
+  const handleCancelBooking = async (bookingId: string) => {
+    if (!confirm('Are you sure you want to cancel this booking? This action cannot be undone.')) {
+      return;
+    }
+
+    try {
+      const { error } = await supabase
+        .from('bookings')
+        .update({ 
+          status: 'cancelled',
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', bookingId);
+
+      if (error) throw error;
+
+      // Update the local state to reflect the cancellation
+      setBookings(bookings.map(booking => 
+        booking.id === bookingId 
+          ? { ...booking, status: 'cancelled' } 
+          : booking
+      ));
+
+      toast({
+        title: 'Success',
+        description: 'Your booking has been cancelled successfully.',
+      });
+    } catch (error) {
+      console.error('Error cancelling booking:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to cancel booking. Please try again.',
+        variant: 'destructive',
+      });
+    }
+  };
+
   const handleDownloadTicket = async (booking: Booking) => {
     try {
       // Get the full booking details with room information
@@ -273,7 +310,11 @@ export default function ProfilePage() {
                     Download Ticket
                   </Button>
                   {booking.status === 'confirmed' && (
-                    <Button variant="outline" size="sm">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => handleCancelBooking(booking.id)}
+                    >
                       Cancel Booking
                     </Button>
                   )}

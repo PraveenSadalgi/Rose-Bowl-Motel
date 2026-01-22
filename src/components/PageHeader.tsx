@@ -3,11 +3,12 @@ import type { FC } from 'react';
 interface PageHeaderProps {
   title: string;
   subtitle?: string;
+  className?: string;
 }
 
-const PageHeader: FC<PageHeaderProps> = ({ title, subtitle }) => {
+const PageHeader: FC<PageHeaderProps> = ({ title, subtitle, className = '' }) => {
   return (
-    <div className="py-12 md:py-16">
+    <div className={`py-12 md:py-16 ${className}`}>
       <div className="container mx-auto px-4 text-center">
         <h1 className="text-4xl md:text-5xl font-headline font-bold text-balance">{title}</h1>
         {subtitle && (

@@ -141,7 +141,7 @@
     {
       "id": "amenity-wifi",
       "description": "High-speed WiFi amenity image",
-      "imageUrl": "https://images.unsplash.com/photo-1586895518497-40005707153b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx3aWZpJTIwc2lnbmFsfGVufDB8fHx8MTc2NzQ1OTk0OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1556742517-fde6c2abbe11?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "imageHint": "wifi signal"
     },
     {
@@ -171,7 +171,7 @@
     {
       "id": "amenity-parking",
       "description": "Free parking amenity image",
-      "imageUrl": "https://images.unsplash.com/photo-1590674899484-5c52051101a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwYXJraW5nJTIwbG90fGVufDB8fHx8MTc2NzQ1OTk0OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1515674447568-09bbb507b96c?q=80&w=1108&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "imageHint": "parking lot"
     },
     {
@@ -183,13 +183,13 @@
     {
       "id": "amenity-coffee",
       "description": "In-room coffee amenity image",
-      "imageUrl": "https://images.unsplash.com/photo-1511920183353-309c2775c163?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb2ZmZWUlMjBtYWtlcnxlbnwwfHx8fDE3Njc0NTk5NDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://plus.unsplash.com/premium_photo-1755784095526-c8c38450a841?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "imageHint": "coffee maker"
     },
     {
       "id": "location-hero",
       "description": "Hero image for the location page.",
-      "imageUrl": "https://images.unsplash.com/photo-1553531384-411a247ccd78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyb2FkJTIwbWFwJTIwcG9pbnRzfGVufDB8fHx8MTc2NzQ2NzMyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1548345680-f5475ea5df84?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "imageHint": "road map points"
     }
   ]
