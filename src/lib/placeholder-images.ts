@@ -10,9 +10,19 @@ export type ImagePlaceholder = {
 export const placeholderImages: ImagePlaceholder[] = data.placeholderImages;
 
 export const getPlaceholderImage = (id: string): ImagePlaceholder => {
+  if (!placeholderImages || !Array.isArray(placeholderImages)) {
+    console.error('Error: placeholderImages is unavailable or not an array.', placeholderImages);
+    return {
+      id: 'error-data',
+      description: 'Data Error',
+      imageUrl: 'https://picsum.photos/seed/error/600/400',
+      imageHint: 'data error',
+    };
+  }
+
   const image = placeholderImages.find((img) => img.id === id);
   if (!image) {
-    // Return a default or throw an error if an image is not found
+    console.warn(`Warning: Image placeholder not found for id: "${id}"`);
     return {
       id: 'not-found',
       description: 'Image not found',

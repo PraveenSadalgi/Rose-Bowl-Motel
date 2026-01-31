@@ -3,9 +3,9 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { format } from 'date-fns';
-import { Calendar as CalendarIcon, Users } from 'lucide-react';
-import { addDays } from 'date-fns';
-import type { DateRange } from 'react-day-picker';
+import { Users } from 'lucide-react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 import {
   Dialog,
@@ -14,16 +14,16 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Calendar } from '@/components/ui/calendar';
 import { Input } from '@/components/ui/input';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 import type { Room } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 interface BookingDialogProps {
   room: Room;
@@ -38,25 +38,92 @@ export default function BookingDialog({
 }: BookingDialogProps) {
   const router = useRouter();
   const { toast } = useToast();
-  const [date, setDate] = useState<DateRange | undefined>({
-    from: new Date(),
-    to: addDays(new Date(), 4),
-  });
+  const [checkInDate, setCheckInDate] = useState<Date | null>(null);
+  const [checkOutDate, setCheckOutDate] = useState<Date | null>(null);
   const [guests, setGuests] = useState(1);
+  const [isChecking, setIsChecking] = useState(false);
 
-  const handleContinue = () => {
-    toast({
-      title: 'Booking In Progress',
-      description: 'Redirecting to complete your booking.',
-    });
-    const params = new URLSearchParams({
-      room: room.slug,
-      from: date?.from ? format(date.from, 'yyyy-MM-dd') : '',
-      to: date?.to ? format(date.to, 'yyyy-MM-dd') : '',
-      guests: guests.toString(),
-    });
-    router.push(`/booking?${params.toString()}`);
-    onOpenChange(false);
+  const checkAvailability = async () => {
+    // Check if number of guests exceeds room capacity
+    if (guests > room.capacity) {
+      toast({
+        title: 'Too Many Guests',
+        description: `This room can accommodate a maximum of ${room.capacity} guest${room.capacity > 1 ? 's' : ''}. Please select a different room or reduce the number of guests.`,
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    if (!checkInDate || !checkOutDate) {
+      toast({
+        title: 'Missing Dates',
+        description: 'Please select both check-in and check-out dates.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setIsChecking(true);
+
+    try {
+      // Get room ID from the room object
+      const roomId = room.id;
+
+      // Use the same RPC function as BookingForm
+      const { data: isAvailable, error: availabilityError } = await supabase
+        .rpc('check_room_availability', {
+          p_room_id: roomId,
+          p_check_in: format(checkInDate, 'yyyy-MM-dd'),
+          p_check_out: format(checkOutDate, 'yyyy-MM-dd')
+        });
+
+      if (availabilityError) {
+        console.error('Error checking availability:', availabilityError);
+        toast({
+          title: 'Error',
+          description: 'Failed to check availability. Please try again.',
+          variant: 'destructive',
+        });
+        setIsChecking(false);
+        return;
+      }
+
+      // If room is not available
+      if (!isAvailable) {
+        toast({
+          title: 'Room Unavailable',
+          description: `This room is unavailable on the selected dates. Please choose different dates.`,
+          variant: 'destructive',
+        });
+        setIsChecking(false);
+        return;
+      }
+
+      // Room is available, proceed to booking
+      toast({
+        title: 'Room Available!',
+        description: 'Redirecting to complete your booking.',
+      });
+
+      const params = new URLSearchParams({
+        room: room.slug,
+        from: format(checkInDate, 'yyyy-MM-dd'),
+        to: format(checkOutDate, 'yyyy-MM-dd'),
+        guests: guests.toString(),
+      });
+
+      router.push(`/booking?${params.toString()}`);
+      onOpenChange(false);
+    } catch (error) {
+      console.error('Unexpected error:', error);
+      toast({
+        title: 'Error',
+        description: 'An unexpected error occurred. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsChecking(false);
+    }
   };
 
   return (
@@ -68,50 +135,37 @@ export default function BookingDialog({
           </DialogTitle>
         </DialogHeader>
         <div className="grid gap-6 py-4">
-          <div>
-            <h3 className="text-base font-medium mb-2">Select Dates</h3>
-            <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    id="date"
-                    variant={"outline"}
-                    className={cn(
-                      "w-full justify-start text-left font-normal h-auto",
-                      !date?.from && "text-muted-foreground"
-                    )}
-                  >
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    <div className='flex-grow'>
-                        <span className='text-xs text-muted-foreground'>Check-in - Check-out</span>
-                        <div className='font-semibold'>
-                            {date?.from ? (
-                            date.to ? (
-                                <>
-                                {format(date.from, "LLL dd, y")} -{" "}
-                                {format(date.to, "LLL dd, y")}
-                                </>
-                            ) : (
-                                format(date.from, "LLL dd, y")
-                            )
-                            ) : (
-                            <span>Pick a date</span>
-                            )}
-                        </div>
-                    </div>
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    initialFocus
-                    mode="range"
-                    defaultMonth={date?.from}
-                    selected={date}
-                    onSelect={setDate}
-                    numberOfMonths={1}
-                    disabled={{ before: new Date() }}
-                  />
-                </PopoverContent>
-              </Popover>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <h3 className="text-base font-medium mb-2">Check-in Date</h3>
+              <DatePicker
+                selected={checkInDate}
+                onChange={(date: Date | null) => setCheckInDate(date)}
+                selectsStart
+                startDate={checkInDate}
+                endDate={checkOutDate}
+                minDate={new Date()}
+                placeholderText="Select check-in"
+                dateFormat="MMM dd, yyyy"
+                className="w-full px-3 py-2 border border-input rounded-md bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-12"
+                wrapperClassName="w-full"
+              />
+            </div>
+            <div>
+              <h3 className="text-base font-medium mb-2">Check-out Date</h3>
+              <DatePicker
+                selected={checkOutDate}
+                onChange={(date: Date | null) => setCheckOutDate(date)}
+                selectsEnd
+                startDate={checkInDate}
+                endDate={checkOutDate}
+                minDate={checkInDate || new Date()}
+                placeholderText="Select check-out"
+                dateFormat="MMM dd, yyyy"
+                className="w-full px-3 py-2 border border-input rounded-md bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-12"
+                wrapperClassName="w-full"
+              />
+            </div>
           </div>
           <div>
             <h3 className="text-base font-medium mb-2">Number of Guests</h3>
@@ -129,8 +183,13 @@ export default function BookingDialog({
             <p className="text-sm text-muted-foreground mt-2">Maximum capacity: {room.capacity} guests</p>
           </div>
         </div>
-        <Button onClick={handleContinue} size="lg" className="w-full text-base">
-          Continue
+        <Button
+          onClick={checkAvailability}
+          size="lg"
+          className="w-full text-base"
+          disabled={isChecking || !checkInDate || !checkOutDate}
+        >
+          {isChecking ? 'Checking Availability...' : 'Check Availability & Continue'}
         </Button>
       </DialogContent>
     </Dialog>

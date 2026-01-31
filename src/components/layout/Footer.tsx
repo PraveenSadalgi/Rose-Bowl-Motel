@@ -25,11 +25,11 @@ export function Footer() {
             <ul className="mt-4 space-y-3">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 mt-1 shrink-0 text-primary" />
-                <span className="text-muted-foreground">123 Rose Boulevard, Garden City, CA 90210</span>
+                <span className="text-muted-foreground">Ellish bridge, opp. Kothawala, Pritam Nagar, Paldi, Ahmedabad, Gujarat</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 shrink-0 text-primary" />
-                <span className="text-muted-foreground">(555) 123-4567</span>
+                <span className="text-muted-foreground">(+91) 9876543210</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 shrink-0 text-primary" />

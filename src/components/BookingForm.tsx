@@ -4,7 +4,9 @@ import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Calendar as CalendarIcon, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -16,7 +18,6 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Calendar } from '@/components/ui/calendar';
 import {
   Select,
   SelectContent,
@@ -24,17 +25,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
 import { useToast } from '@/hooks/use-toast';
 import { rooms } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from './ui/card';
 import { ArrowLeft, CreditCard } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { addDays, format, differenceInDays } from 'date-fns';
+import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { createClient } from '@supabase/supabase-js';
 import PaymentForm from './PaymentForm';
@@ -77,6 +73,7 @@ export default function BookingForm() {
   const [bookingId, setBookingId] = useState<string | null>(null);
   const [totalAmount, setTotalAmount] = useState(0);
   const [room, setRoom] = useState<Room | null>(null);
+
   const roomSlug = searchParams ? searchParams.get('room') || '' : '';
 
   const form = useForm<BookingFormValues>({
@@ -102,10 +99,10 @@ export default function BookingForm() {
   const selectedRoom = roomType ? rooms.find((r) => r.slug === roomType) || null : null;
 
   // Calculate number of nights
-  const nights = checkInDate && checkOutDate 
+  const nights = checkInDate && checkOutDate
     ? Math.max(1, Math.round((checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24)))
     : 0;
-    
+
   // Calculate total cost
   const totalCost = selectedRoom && nights > 0 ? selectedRoom.price * nights : 0;
 
@@ -119,7 +116,7 @@ export default function BookingForm() {
       setTotalAmount(0);
     }
   }, [selectedRoom, checkInDate, checkOutDate]);
-  
+
   // Update room state when selectedRoom changes
   useEffect(() => {
     setRoom(selectedRoom);
@@ -144,7 +141,7 @@ export default function BookingForm() {
     try {
       // Get the current user
       const { data: { user }, error: userError } = await supabase.auth.getUser();
-      
+
       if (userError) throw userError;
       if (!user) {
         throw new Error('You must be logged in to make a booking');
@@ -168,7 +165,13 @@ export default function BookingForm() {
 
       // Check if the room has enough capacity
       if (data.numGuests > roomData.capacity) {
-        throw new Error(`This room has a maximum capacity of ${roomData.capacity} guests`);
+        toast({
+          title: 'Too Many Guests',
+          description: `This room can accommodate a maximum of ${roomData.capacity} guest${roomData.capacity > 1 ? 's' : ''}. Please reduce the number of guests.`,
+          variant: 'destructive',
+        });
+        setIsSubmitting(false);
+        return;
       }
 
       // Then check room availability for the dates
@@ -276,36 +279,21 @@ export default function BookingForm() {
                       name="checkInDate"
                       render={({ field }) => (
                         <FormItem className="flex flex-col">
-                          <FormLabel className="text-lg font-semibold">Check-in</FormLabel>
-                          <Popover>
-                            <PopoverTrigger asChild>
-                              <FormControl>
-                                <Button
-                                  variant={"outline"}
-                                  className={cn(
-                                    "w-full pl-3 text-left font-normal",
-                                    !field.value && "text-muted-foreground"
-                                  )}
-                                >
-                                  {field.value ? (
-                                    format(field.value, "LLL dd, y")
-                                  ) : (
-                                    <span>Pick a date</span>
-                                  )}
-                                  <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                                </Button>
-                              </FormControl>
-                            </PopoverTrigger>
-                            <PopoverContent className="w-auto p-0" align="start">
-                              <Calendar
-                                mode="single"
-                                selected={field.value}
-                                onSelect={field.onChange}
-                                disabled={(date) => date < new Date(new Date().setHours(0,0,0,0))}
-                                initialFocus
-                              />
-                            </PopoverContent>
-                          </Popover>
+                          <FormLabel className="text-lg font-semibold">Check-in Date</FormLabel>
+                          <FormControl>
+                            <DatePicker
+                              selected={field.value}
+                              onChange={(date: Date | null) => field.onChange(date)}
+                              selectsStart
+                              startDate={field.value}
+                              endDate={form.watch('checkOutDate')}
+                              minDate={new Date()}
+                              placeholderText="Select check-in date"
+                              dateFormat="MMM dd, yyyy"
+                              className="w-full px-3 py-2 border border-input rounded-md bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                              wrapperClassName="w-full"
+                            />
+                          </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -315,36 +303,21 @@ export default function BookingForm() {
                       name="checkOutDate"
                       render={({ field }) => (
                         <FormItem className="flex flex-col">
-                          <FormLabel className="text-lg font-semibold">Check-out</FormLabel>
-                          <Popover>
-                            <PopoverTrigger asChild>
-                              <FormControl>
-                                <Button
-                                  variant={"outline"}
-                                  className={cn(
-                                    "w-full pl-3 text-left font-normal",
-                                    !field.value && "text-muted-foreground"
-                                  )}
-                                >
-                                  {field.value ? (
-                                    format(field.value, "LLL dd, y")
-                                  ) : (
-                                    <span>Pick a date</span>
-                                  )}
-                                  <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                                </Button>
-                              </FormControl>
-                            </PopoverTrigger>
-                            <PopoverContent className="w-auto p-0" align="start">
-                              <Calendar
-                                mode="single"
-                                selected={field.value}
-                                onSelect={field.onChange}
-                                disabled={(date) => date <= (form.watch('checkInDate') || new Date())}
-                                initialFocus
-                              />
-                            </PopoverContent>
-                          </Popover>
+                          <FormLabel className="text-lg font-semibold">Check-out Date</FormLabel>
+                          <FormControl>
+                            <DatePicker
+                              selected={field.value}
+                              onChange={(date: Date | null) => field.onChange(date)}
+                              selectsEnd
+                              startDate={form.watch('checkInDate')}
+                              endDate={field.value}
+                              minDate={form.watch('checkInDate') || new Date()}
+                              placeholderText="Select check-out date"
+                              dateFormat="MMM dd, yyyy"
+                              className="w-full px-3 py-2 border border-input rounded-md bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                              wrapperClassName="w-full"
+                            />
+                          </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -354,29 +327,29 @@ export default function BookingForm() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField control={form.control} name="firstName" render={({ field }) => (
-                      <FormItem><FormLabel>First Name</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
-                    )}
+                    <FormItem><FormLabel>First Name</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
+                  )}
                   />
                   <FormField control={form.control} name="lastName" render={({ field }) => (
-                      <FormItem><FormLabel>Last Name</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
-                    )}
+                    <FormItem><FormLabel>Last Name</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
+                  )}
                   />
                   <FormField control={form.control} name="email" render={({ field }) => (
-                      <FormItem className="md:col-span-2"><FormLabel>Email Address</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
-                    )}
+                    <FormItem className="md:col-span-2"><FormLabel>Email Address</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
+                  )}
                   />
                   <FormField control={form.control} name="phone" render={({ field }) => (
-                      <FormItem className="md:col-span-2"><FormLabel>Phone Number</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
-                    )}
+                    <FormItem className="md:col-span-2"><FormLabel>Phone Number</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
+                  )}
                   />
-                  <FormField 
-                    control={form.control} 
-                    name="numGuests" 
+                  <FormField
+                    control={form.control}
+                    name="numGuests"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Number of Guests</FormLabel>
-                        <Select 
-                          onValueChange={(value) => field.onChange(parseInt(value))} 
+                        <Select
+                          onValueChange={(value) => field.onChange(parseInt(value))}
                           defaultValue={field.value?.toString()}
                         >
                           <FormControl>
@@ -401,7 +374,7 @@ export default function BookingForm() {
               </form>
             </CardContent>
             <CardFooter className="flex justify-end">
-              <Button type="submit" disabled={isSubmitting}>
+              {/* <Button type="submit" disabled={isSubmitting}>
                 {isSubmitting ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -410,7 +383,7 @@ export default function BookingForm() {
                 ) : (
                   'Continue to Payment'
                 )}
-              </Button>
+              </Button> */}
             </CardFooter>
           </>
         );

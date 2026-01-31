@@ -4,6 +4,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Toaster } from '@/components/ui/toaster';
 import { AuthProvider } from '@/context/AuthContext';
+import { SplashScreen } from '@/components/ui/SplashScreen';
 
 export const metadata: Metadata = {
   title: {
@@ -36,6 +37,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
       </head>
       <body className="font-body bg-background text-foreground antialiased flex flex-col min-h-screen">
+        <SplashScreen />
         <AuthProvider>
           <Header />
           <main className="flex-grow">{children}</main>
@@ -46,3 +48,4 @@ export default function RootLayout({
     </html>
   );
 }
+

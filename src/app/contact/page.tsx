@@ -20,30 +20,30 @@ export default function ContactPage() {
           <div className="view-animation">
             <h2 className="font-headline text-3xl mb-6">Contact Information</h2>
             <div className="space-y-6 text-lg">
-                <div className='flex items-start gap-4'>
-                    <Phone className="w-6 h-6 mt-1 text-primary"/>
-                    <div>
-                        <h3 className="font-semibold">Phone</h3>
-                        <p className="text-muted-foreground">(123) 456-7890</p>
-                    </div>
+              <div className='flex items-start gap-4'>
+                <Phone className="w-6 h-6 mt-1 text-primary" />
+                <div>
+                  <h3 className="font-semibold">Phone</h3>
+                  <p className="text-muted-foreground">(+91) 9876543210</p>
                 </div>
-                 <div className='flex items-start gap-4'>
-                    <Mail className="w-6 h-6 mt-1 text-primary"/>
-                    <div>
-                        <h3 className="font-semibold">Email</h3>
-                        <p className="text-muted-foreground">contact@rosebowlmotel.com</p>
-                    </div>
+              </div>
+              <div className='flex items-start gap-4'>
+                <Mail className="w-6 h-6 mt-1 text-primary" />
+                <div>
+                  <h3 className="font-semibold">Email</h3>
+                  <p className="text-muted-foreground">contact@rosebowlmotel.com</p>
                 </div>
-                 <div className='flex items-start gap-4'>
-                    <Clock className="w-6 h-6 mt-1 text-primary"/>
-                    <div>
-                        <h3 className="font-semibold">Hours</h3>
-                        <p className="text-muted-foreground">Open 24/7 for our guests</p>
-                    </div>
+              </div>
+              <div className='flex items-start gap-4'>
+                <Clock className="w-6 h-6 mt-1 text-primary" />
+                <div>
+                  <h3 className="font-semibold">Hours</h3>
+                  <p className="text-muted-foreground">Open 24/7 for our guests</p>
                 </div>
+              </div>
             </div>
           </div>
-          <div className="view-animation" style={{animationDelay: '200ms'}}>
+          <div className="view-animation" style={{ animationDelay: '200ms' }}>
             <ContactForm />
           </div>
         </div>

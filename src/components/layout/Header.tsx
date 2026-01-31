@@ -8,6 +8,8 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '../ui/sheet';
 import { Menu, User, LogIn, LogOut, UserPlus } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase/client';
+import { useToast } from '@/hooks/use-toast';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -32,6 +34,10 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const { toast } = useToast();
+  const { scrollY } = useScroll();
+  const headerOpacity = useTransform(scrollY, [0, 100], [0.8, 1]);
+  const headerBlur = useTransform(scrollY, [0, 100], [8, 16]);
 
   useEffect(() => {
     const getUser = async () => {
@@ -57,11 +63,29 @@ export function Header() {
     router.refresh();
   };
 
+  const handleBookNow = (e: React.MouseEvent) => {
+    if (!user) {
+      e.preventDefault();
+      toast({
+        title: 'Authentication Required',
+        description: 'Please sign in or sign up to book a room.',
+        variant: 'destructive',
+      });
+      router.push('/auth/signup');
+    }
+  };
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <motion.header
+      style={{
+        backgroundColor: `rgba(255, 255, 255, ${headerOpacity.get()})`,
+        backdropFilter: `blur(${headerBlur.get()}px)`,
+      }}
+      className="sticky top-0 z-50 w-full border-b transition-all duration-300"
+    >
       <div className="container mx-auto px-4 flex h-16 items-center justify-between">
-        <Link 
-          href="/" 
+        <Link
+          href="/"
           className="flex items-center space-x-2 active:opacity-80 transition-opacity"
           aria-label="Rose Bowl Motel Home"
         >
@@ -85,7 +109,7 @@ export function Header() {
               </Link>
             ))}
           </nav>
-          
+
           <div className="flex items-center gap-4">
             {!loading && (user ? (
               <DropdownMenu>
@@ -123,21 +147,22 @@ export function Header() {
                 </Button>
               </div>
             ))}
-            <Button 
-              asChild 
-              size="sm" 
+            <Button
+              asChild={user ? true : false}
+              size="sm"
               className="font-extrabold text-sm bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg transition-all duration-200"
+              onClick={!user ? handleBookNow : undefined}
             >
-              <Link href="/booking">BOOK NOW</Link>
+              {user ? <Link href="/booking">BOOK NOW</Link> : <span>BOOK NOW</span>}
             </Button>
           </div>
         </div>
 
         {/* Mobile Menu Button */}
         <div className="md:hidden -mr-2 flex items-center">
-          <Button 
-            variant="outline" 
-            size="icon" 
+          <Button
+            variant="outline"
+            size="icon"
             onClick={() => setIsOpen(true)}
             className="h-10 w-10 rounded-full flex items-center justify-center"
             aria-label="Toggle navigation menu"
@@ -151,6 +176,7 @@ export function Header() {
       {/* Mobile Menu */}
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetContent side="left" className="flex flex-col p-0 w-[300px] sm:w-[350px] overflow-hidden">
+          <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
           <div className="flex flex-col h-full">
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b">
@@ -158,28 +184,30 @@ export function Header() {
                 <span className="font-bold font-headline text-xl">Rose Bowl Motel</span>
                 <p className="text-sm text-muted-foreground">the classic elegance</p>
               </div>
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                onClick={() => setIsOpen(false)}
-                className="h-10 w-10 rounded-full"
-              >
-                <span className="text-2xl">&times;</span>
-                <span className="sr-only">Close menu</span>
-              </Button>
             </div>
 
             {/* Navigation Content */}
             <div className="flex-1 overflow-y-auto">
               {/* Quick Actions */}
               <div className="p-4">
-                <Button 
-                  asChild
+                <Button
+                  asChild={user ? true : false}
                   className="w-full bg-primary text-white hover:bg-primary/90 h-12 text-base font-semibold mb-6"
+                  onClick={(e) => {
+                    if (!user) {
+                      handleBookNow(e);
+                    } else {
+                      setIsOpen(false);
+                    }
+                  }}
                 >
-                  <Link href="/booking" onClick={() => setIsOpen(false)}>
-                    BOOK NOW
-                  </Link>
+                  {user ? (
+                    <Link href="/booking">
+                      BOOK NOW
+                    </Link>
+                  ) : (
+                    <span>BOOK NOW</span>
+                  )}
                 </Button>
 
                 {/* Main Navigation */}
@@ -191,8 +219,8 @@ export function Header() {
                       onClick={() => setIsOpen(false)}
                       className={cn(
                         'flex items-center px-4 py-3 text-base font-medium rounded-lg transition-colors',
-                        pathname === link.href 
-                          ? 'bg-primary/10 text-primary' 
+                        pathname === link.href
+                          ? 'bg-primary/10 text-primary'
                           : 'text-foreground/80 hover:bg-accent/50'
                       )}
                     >
@@ -208,7 +236,7 @@ export function Header() {
                   user ? (
                     <div className="space-y-4">
                       <p className="px-2 text-sm font-medium text-muted-foreground mb-2">My Account</p>
-                      
+
                       {/* User Info */}
                       <div className="flex items-center gap-3 px-2 py-2 rounded-lg bg-accent/30 mb-4">
                         <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
@@ -266,13 +294,13 @@ export function Header() {
                   ) : (
                     <div className="space-y-3">
                       <p className="px-2 text-sm font-medium text-muted-foreground mb-2">Guest</p>
-                      <Button 
-                        asChild 
-                        variant="outline" 
+                      <Button
+                        asChild
+                        variant="outline"
                         className="w-full h-12 text-base gap-2"
                       >
-                        <Link 
-                          href="/auth/signin" 
+                        <Link
+                          href="/auth/signin"
                           onClick={() => setIsOpen(false)}
                           className="flex items-center justify-center"
                         >
@@ -280,12 +308,12 @@ export function Header() {
                           Sign In
                         </Link>
                       </Button>
-                      <Button 
-                        asChild 
+                      <Button
+                        asChild
                         className="w-full h-12 text-base gap-2 bg-primary hover:bg-primary/90 text-white"
                       >
-                        <Link 
-                          href="/auth/signup" 
+                        <Link
+                          href="/auth/signup"
                           onClick={() => setIsOpen(false)}
                           className="flex items-center justify-center"
                         >
@@ -305,17 +333,23 @@ export function Header() {
 
             {/* Bottom CTA */}
             <div className="p-4 border-t">
-              <Button 
-                asChild 
+              <Button
+                asChild={user ? true : false}
                 className="w-full h-12 text-base font-semibold"
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => {
+                  if (!user) {
+                    handleBookNow(e);
+                  } else {
+                    setIsOpen(false);
+                  }
+                }}
               >
-                <Link href="/booking">BOOK NOW</Link>
+                {user ? <Link href="/booking">BOOK NOW</Link> : <span>BOOK NOW</span>}
               </Button>
             </div>
           </div>
         </SheetContent>
       </Sheet>
-    </header>
+    </motion.header>
   );
 }
