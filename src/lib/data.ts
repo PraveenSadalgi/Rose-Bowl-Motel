@@ -24,7 +24,7 @@ export const rooms: Room[] = [
     longDescription:
       'Indulge in the comfort of our Deluxe King Room. Featuring a plush king-sized bed, a modern en-suite bathroom with a rainfall shower, and a cozy seating area. Enjoy stunning views of the city skyline or our tranquil gardens. Perfect for couples or solo travelers seeking a touch of luxury.',
     price: 1000,
-    images: ['deluxe-king-1', 'deluxe-king-2'],
+    images: ['deluxe-king-1', 'deluxe-king-2', 'deluxe-king-3', 'deluxe-king-4'],
     amenities: ['wifi', 'tv', 'air-conditioning', 'mini-bar', 'marble-bathroom', 'coffee-maker'],
     capacity: 2,
     sqft: 450,
@@ -37,7 +37,7 @@ export const rooms: Room[] = [
     longDescription:
       'Experience unparalleled luxury in our Executive Suite. This expansive suite offers a private bedroom with a king-sized bed, a separate, elegantly furnished living room, and a spa-like bathroom with a soaking tub. Ideal for business travelers or those desiring extra space and comfort.',
     price: 7999,
-    images: ['executive-suite-1', 'executive-suite-2'],
+    images: ['executive-suite-1', 'executive-suite-2', 'executive-suite-3', 'executive-suite-4', 'executive-suite-5'],
     amenities: ['wifi', 'tv', 'air-conditioning', 'mini-bar', 'room-service', 'private-balcony'],
     capacity: 3,
     sqft: 750,
@@ -50,7 +50,7 @@ export const rooms: Room[] = [
     longDescription:
       'Wake up to serene views of our lush, manicured gardens in the Garden View Queen room. This charming room features a comfortable queen-sized bed, a private balcony, and all the modern amenities you need for a relaxing stay. A peaceful retreat from the everyday hustle.',
     price: 3999,
-    images: ['garden-view-queen-1', 'garden-view-queen-2'],
+    images: ['garden-view-queen-1', 'garden-view-queen-2', 'garden-view-queen-3', 'garden-view-queen-4'],
     amenities: ['wifi', 'tv', 'air-conditioning', 'balcony', 'coffee-maker', 'smart-tv'],
     capacity: 2,
     sqft: 400,
@@ -63,7 +63,7 @@ export const rooms: Room[] = [
     longDescription:
       'Our Presidential Suite is the epitome of opulence. Occupying the top floor, it boasts panoramic views, a grand master bedroom, a separate dining area for eight, a private study, and a dedicated butler service. Every detail is meticulously curated for an extraordinary experience.',
     price: 4000,
-    images: ['presidential-suite-1', 'presidential-suite-2'],
+    images: ['presidential-suite-1', 'presidential-suite-2', 'presidential-suite-3', 'presidential-suite-4', 'presidential-suite-5'],
     amenities: ['wifi', 'tv', 'air-conditioning', 'mini-bar', 'room-service', 'butler-service', 'private-balcony'],
     capacity: 4,
     sqft: 2200,

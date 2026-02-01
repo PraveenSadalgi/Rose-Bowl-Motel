@@ -280,9 +280,9 @@ export default function Home() {
                 <div className="order-2 md:order-1">
                   <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-2xl group">
                     <Image
-                      src={getPlaceholderImage('rooftop-lounge').imageUrl}
+                      src="https://images.unsplash.com/photo-1596860899920-c3fe864485d9?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                       alt="Rose Bowl Motel Future"
-                      data-ai-hint="modern hotel rooftop lounge"
+                      data-ai-hint="modern hotel interior"
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />

@@ -34,7 +34,7 @@ export default function RoomDetailPage() {
   const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
 
   const plugin = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: true })
+    Autoplay({ delay: 2000, stopOnInteraction: true })
   );
 
   useEffect(() => {
